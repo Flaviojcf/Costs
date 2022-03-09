@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Container from "../layout/Container"
+import Container from "../layout/Container/Container"
 import styles from './/Navbar.module.css'
 import logo from '../../img/costs_logo.png'
 
@@ -18,10 +18,10 @@ return (
                <Link to='/projects'>Projetos</Link>
            </li>
            <li className={styles.item}>
-               <Link to="company">Empresa</Link>
+               <Link to="/company">Empresa</Link>
            </li>
            <li className={styles.item}>
-               <Link to="contact">Contato</Link>
+               <Link to="/contact">Contato</Link>
            </li>
            
           

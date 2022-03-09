@@ -1,5 +1,5 @@
-import {BrowserRouter, Route, Routes, Link}from 'react-router-dom'
-import Container from './components/layout/Container';
+import {BrowserRouter, Route, Routes}from 'react-router-dom'
+import Container from './components/layout/Container/Container';
 import Home from './components/pages/Home/Home';
 import Company from './components/pages/Company/Company';
 import Contact from './components/pages/Contact/Contact';
