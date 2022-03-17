@@ -1,15 +1,28 @@
 {
   "projects": [
     {
-      "name": "isadora",
-      "valueTotal": "20",
+      "name": "Blog Pessoal",
+      "valueTotal": "6500",
       "category": {
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 0,
-      "services": [],
-      "id": 2
+      "cost": 6500,
+      "services": [
+        {
+          "name": "Atualizações",
+          "cost": "1000",
+          "description": "Atualizar informações no blog",
+          "id": "e53eb4ab-cd85-4a93-b8f5-46215c0b13bd"
+        },
+        {
+          "name": "Tecnologia",
+          "cost": "5500",
+          "description": "Alterar framework",
+          "id": "446c5b6e-0fad-4d56-a09b-da5f1aa62c59"
+        }
+      ],
+      "id": 1
     }
   ],
   "categories": [

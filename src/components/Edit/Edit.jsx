@@ -1,5 +1,5 @@
 import styles from ".//Edit.module.css";
-import {parse, v4 as uuidv4} from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
@@ -37,7 +37,8 @@ export default function Edit() {
   }, [id]);
 
   function editPost(edit) {
-  
+    setMessage("");
+
 
     if (edit.valueTotal < edit.cost) {
       setMessage("Orçamento precisa ser maior que o custo do projeto");
@@ -63,9 +64,9 @@ export default function Edit() {
   }
 
   function createService(edit) {
-    setMessage("");
+    setMessage("")
 
-    const lastService = edit.services[edit.services.length -1]
+    const lastService = edit.services[edit.services.length - 1]
     lastService.id = uuidv4()
     const lastServiceCost = lastService.cost
 
@@ -80,23 +81,47 @@ export default function Edit() {
 
     edit.cost = newCost
 
-    fetch(`http:localhost:5000/projects/${edit.id}`, {
-        method:'PATCH',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(edit)
+      fetch(`http://localhost:5000/projects/${edit.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(edit),
     })
-    .then((res) =>res.json())
+    .then((res) => res.json())
     .then((data)=> {
+      console.log(data)
         setShowServiceForm(false)
     })
     .catch((err) => console.log(err))
   }
 
 
-  function removeService () {
-    
+  function removeService (id, cost) {
+    const servicesUpdated = edit.services.filter(
+      (service)=> service.id !== id
+    )
+    const projectUpdate = edit
+
+    projectUpdate.services = servicesUpdated
+    projectUpdate.cost = parseFloat(projectUpdate.cost) - parseFloat(cost)
+
+    fetch(`http://localhost:5000/projects/${projectUpdate.id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(edit),
+    })
+    .then((res) => res.json())
+    .then((data)=> {
+      console.log(data)
+        setShowServiceForm(false)
+        setServices(servicesUpdated)
+        setType('success')
+        setMessage('Serviço removido')
+    })
+    .catch((err) => console.log(err))
   }
 
   function toggleProjectForm() {
@@ -104,7 +129,7 @@ export default function Edit() {
   }
 
   function toggleServiceForm() {
-    setShowServiceForm(!showProjectForm);
+    setShowServiceForm(!showServiceForm);
   }
 
   console.log(id);
