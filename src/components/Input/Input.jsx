@@ -4,7 +4,9 @@ function Input({type, text, name, placeholder, handleOnChange, value}) {
     return (
         <div className={styles.formControl}>
             <label htmlFor={name}>{text}</label>
-            <input type={type} 
+            <input 
+                    required           
+                    type={type} 
                     name={name} 
                     id={name} 
                     placeholder={placeholder} 

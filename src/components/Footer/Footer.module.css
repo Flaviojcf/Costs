@@ -13,6 +13,16 @@
 
 .socialList li {
     margin: 0 1em;
+    
+}
+
+.socialList a {
+    text-decoration: none;
+    color: white;
+}
+
+.socialList a:hover {
+    color: #ffbb33;
 }
 
 .socialList li:hover {
